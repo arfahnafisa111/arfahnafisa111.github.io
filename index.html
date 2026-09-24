@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ragam Sistem Operasi Mobile – Contoh Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef2f5; --surface:#ffffff; --ink:#14213d; --muted:#54627a; --line:#d3dbe4;
+  --accent:#0f766e; --accent-ink:#ffffff; --ended:#8a5a00; --ended-bar:#c9a24a; --active-bar:#0f766e; --soft:#e2ebf0;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1826; --surface:#172234; --ink:#e8eef6; --muted:#9aa9bf; --line:#2a3850;
+    --accent:#4fd1c5; --accent-ink:#0f1826; --ended:#e6b955; --ended-bar:#b98a2b; --active-bar:#4fd1c5; --soft:#1e2c42;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1826; --surface:#172234; --ink:#e8eef6; --muted:#9aa9bf; --line:#2a3850;
+  --accent:#4fd1c5; --accent-ink:#0f1826; --ended:#e6b955; --ended-bar:#b98a2b; --active-bar:#4fd1c5; --soft:#1e2c42;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-size:18px;line-height:1.7;min-height:100%}
+h1,h2,h3,nav,.sans,th,summary,button{font-family:"Bricolage Grotesque","Segoe UI",Helvetica,Arial,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:16px;overflow-x:auto}
+.brand{font-weight:800;font-size:17px;white-space:nowrap;padding:14px 0}
+nav{display:flex;gap:4px}
+nav button{background:none;border:0;color:var(--muted);font-size:15px;font-weight:500;padding:16px 12px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+nav button:hover{color:var(--ink)}
+nav button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:700}
+button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.hero{padding:56px 0 24px}
+.hero h1{font-size:clamp(34px,6vw,60px);line-height:1.05;margin:0 0 16px;font-weight:800;letter-spacing:-.02em;max-width:16ch}
+.hero p.lead{font-size:20px;max-width:56ch;color:var(--muted);margin:0 0 8px}
+.idcard{display:inline-block;margin-top:14px;padding:10px 14px;border:1px dashed var(--line);border-radius:6px;font-size:15px;color:var(--muted)}
+
+.tl{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 16px 12px;margin:28px 0}
+.tl h2{font-size:18px;margin:0 0 2px}
+.tl .cap{font-size:14px;color:var(--muted);margin:0 0 10px}
+.tl svg{width:100%;height:auto;display:block}
+.tl text{fill:var(--ink);font-family:"Bricolage Grotesque","Segoe UI",Arial,sans-serif;font-size:11px}
+.tl .axis{fill:var(--muted)}
+.legend{display:flex;gap:18px;font-size:14px;color:var(--muted);flex-wrap:wrap;margin-top:6px}
+.legend i{display:inline-block;width:14px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle}
+
+section.page{display:none;padding:28px 0 64px}
+section.page.on{display:block}
+section.page h2{font-size:clamp(26px,4vw,38px);margin:0 0 6px;letter-spacing:-.01em}
+section.page h3{font-size:22px;margin:32px 0 8px}
+p{max-width:68ch}
+.todo{background:var(--soft);border-left:4px solid var(--ended-bar);padding:10px 14px;border-radius:4px;font-size:16px;max-width:68ch}
+.todo b{font-family:"Bricolage Grotesque",sans-serif}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:10px 0}
+summary{cursor:pointer;padding:14px 16px;font-weight:700;font-size:18px;display:flex;align-items:center;gap:12px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";margin-left:auto;color:var(--muted);font-size:22px;font-weight:500}
+details[open] summary::after{content:"–"}
+.pill{font-size:12px;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--accent);color:var(--accent-ink)}
+.pill.end{background:var(--ended-bar);color:#1b1300}
+.body{padding:0 16px 16px}
+dl.facts{display:grid;grid-template-columns:max-content 1fr;gap:4px 18px;margin:0 0 10px;font-size:16px}
+dl.facts dt{font-family:"Bricolage Grotesque",sans-serif;color:var(--muted);font-weight:500}
+dl.facts dd{margin:0}
+.group-title{font-size:15px;color:var(--muted);margin:28px 0 6px;font-family:"Bricolage Grotesque",sans-serif;font-weight:700}
+
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:16px;min-width:520px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--soft);font-size:14px}
+tr:last-child td{border-bottom:0}
+caption{caption-side:top;text-align:left;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;padding:12px 14px 0;font-size:16px}
+
+.video{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;max-width:720px}
+.video .screen{aspect-ratio:16/9;background:#0f1826;color:#e8eef6;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:20px;text-align:center;font-family:"Bricolage Grotesque",sans-serif}
+.video .play{width:64px;height:64px;border-radius:50%;background:#4fd1c5;display:grid;place-items:center}
+.video .play::after{content:"";border-left:20px solid #0f1826;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
+.video .meta{padding:14px 16px;font-size:16px}
+pre{background:var(--soft);padding:12px 14px;border-radius:6px;overflow-x:auto;font-size:14px;max-width:720px}
+
+ol.refs{padding-left:0;list-style:none;max-width:72ch}
+ol.refs li{padding:0 0 12px 2em;text-indent:-2em;font-size:17px;line-height:1.55}
+ol.refs li.blank{color:var(--muted);font-style:italic}
+
+footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:15px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){ section.page.on{animation:in .25s ease-out} @keyframes in{from{opacity:0}to{opacity:1}} }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">OS Mobile</div>
+    <nav role="tablist" aria-label="Menu blog">
+      <button role="tab" data-p="beranda" aria-selected="true">Beranda</button>
+      <button role="tab" data-p="teori" aria-selected="false">Teori</button>
+      <button role="tab" data-p="os" aria-selected="false">Sistem Operasi</button>
+      <button role="tab" data-p="tabel" aria-selected="false">Tabel</button>
+      <button role="tab" data-p="video" aria-selected="false">Video</button>
+      <button role="tab" data-p="pustaka" aria-selected="false">Daftar Pustaka</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- BERANDA -->
+<section class="page on" id="beranda">
+  <div class="hero">
+    <h1>Mengenal Ragam Sistem Operasi Mobile</h1>
+    <p class="lead">Dari Android yang bertahan sampai Bada yang menghilang: enam belas sistem operasi, satu garis waktu.</p>
+    <div class="idcard">Nama: Arfah Nafisa &nbsp;|&nbsp; NIM: [isi NIM] &nbsp;|&nbsp; Mata kuliah: [isi] &nbsp;|&nbsp; Dosen: [isi]</div>
+  </div>
+
+  <div class="tl">
+    <h2>Umur sistem operasi mobile</h2>
+    <p class="cap">Tahun kira-kira, hanya untuk ilustrasi. Cocokkan dengan buku atau jurnal sebelum dipakai di blog Anda.</p>
+    <div id="tl"></div>
+    <div class="legend"><span><i style="background:var(--active-bar)"></i>Masih aktif</span><span><i style="background:var(--ended-bar)"></i>Sudah dihentikan</span></div>
+  </div>
+
+  <p>Sistem operasi adalah perangkat lunak yang mengelola perangkat keras dan menyediakan layanan bagi aplikasi (Silberschatz et al., 2018). Di ponsel, ia juga menentukan pengalaman pengguna, keamanan, dan ekosistem aplikasi yang tersedia.</p>
+  <p>Blog ini membahas 16 sistem operasi dengan format yang sama, membandingkannya dalam tabel, dan menjelaskan mengapa sebagian bertahan sementara yang lain punah.</p>
+  <p class="todo"><b>Ganti dengan tulisan sendiri.</b> Tulis latar belakang dan tujuan blog dengan kata-kata Anda, lengkap dengan sitasi.</p>
+</section>
+
+<!-- TEORI -->
+<section class="page" id="teori">
+  <h2>Landasan Teori</h2>
+  <h3>Pengertian sistem operasi</h3>
+  <p>Sistem operasi berperan sebagai perantara antara pengguna, aplikasi, dan perangkat keras (Tanenbaum &amp; Bos, 2015). Tanpa sistem operasi, setiap aplikasi harus mengatur sendiri layar, memori, dan jaringan.</p>
+  <h3>Fungsi utama</h3>
+  <p>Manajemen proses, manajemen memori, manajemen berkas, manajemen perangkat masukan/keluaran, dan antarmuka pengguna (Stallings, 2018).</p>
+  <h3>OS desktop dan OS mobile</h3>
+  <p class="todo"><b>Isi sendiri.</b> Jelaskan 2–3 paragraf: layar sentuh, baterai terbatas, sensor, konektivitas nirkabel, toko aplikasi. Kutip minimal satu artikel jurnal.</p>
+</section>
+
+<!-- SISTEM OPERASI -->
+<section class="page" id="os">
+  <h2>Sistem Operasi</h2>
+  <p>Setiap sistem operasi memakai format yang sama supaya mudah dibandingkan. Klik untuk membuka.</p>
+  <div id="oslist"></div>
+  <p class="todo"><b>Ganti dengan tulisan sendiri.</b> Data di sini ringkasan awal. Tambahkan 1–2 paragraf penjelasan per sistem operasi dengan sitasi buku atau jurnal.</p>
+</section>
+
+<!-- TABEL -->
+<section class="page" id="tabel">
+  <h2>Tabel</h2>
+
+  <h3>Tabel 1. Kelebihan dan kekurangan Android</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Kelebihan</th><th>Kekurangan</th></tr></thead>
+    <tbody>
+      <tr><td>Kode sumber terbuka (AOSP) dan mudah disesuaikan</td><td>Fragmentasi versi di banyak perangkat</td></tr>
+      <tr><td>Pilihan perangkat luas, dari murah sampai premium</td><td>Pembaruan tidak seragam antar vendor</td></tr>
+      <tr><td>Ekosistem aplikasi sangat besar</td><td>Risiko malware lebih tinggi di luar toko resmi</td></tr>
+      <tr><td>Didukung banyak vendor</td><td>Aplikasi bawaan vendor (bloatware)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Tabel 2. Kelebihan dan kekurangan Fuchsia</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Kelebihan</th><th>Kekurangan</th></tr></thead>
+    <tbody>
+      <tr><td>Kernel baru (Zircon) yang tidak berbasis Linux</td><td>Pemakaian komersial masih terbatas</td></tr>
+      <tr><td>Dirancang modular dan mudah diperbarui</td><td>Ekosistem aplikasi masih kecil</td></tr>
+      <tr><td>Bisa dipakai di berbagai jenis perangkat</td><td>Arah pengembangan jangka panjang belum jelas</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Tabel 3. Perbedaan Bada dan Maemo</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Aspek</th><th>Bada</th><th>Maemo</th></tr></thead>
+    <tbody>
+      <tr><td>Pengembang</td><td>Samsung</td><td>Nokia</td></tr>
+      <tr><td>Rilis</td><td>2010</td><td>2005</td></tr>
+      <tr><td>Basis</td><td>Platform milik Samsung</td><td>Linux (berbasis Debian)</td></tr>
+      <tr><td>Contoh perangkat</td><td>Samsung Wave</td><td>Nokia 770, N800, N900</td></tr>
+      <tr><td>Nasib akhir</td><td>Dihentikan, dilebur ke Tizen</td><td>Digabung ke MeeGo</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Tabel 4. Perbandingan umum</h3>
+  <div class="tablewrap"><table id="cmp">
+    <thead><tr><th>Nama OS</th><th>Pengembang</th><th>Rilis</th><th>Basis</th><th>Status</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <p class="todo"><b>Verifikasi.</b> Cocokkan setiap data tabel dengan buku atau jurnal, lalu tulis sumbernya di bawah tabel.</p>
+</section>
+
+<!-- VIDEO -->
+<section class="page" id="video">
+  <h2>Video Pendukung</h2>
+  <div class="video">
+    <div class="screen"><div class="play"></div><div>Tempat video YouTube</div></div>
+    <div class="meta">
+      <b>Judul video:</b> [isi]<br>
+      <b>Kanal:</b> [isi]<br>
+      <b>Sumber:</b> [tempel link YouTube di sini]
+    </div>
+  </div>
+  <h3>Cara memasang video di WordPress atau Blogspot</h3>
+  <p>Di WordPress, tempel link YouTube langsung ke editor dan video tampil otomatis. Di Blogspot, pakai tombol sisipkan video atau kode berikut, dengan <code>VIDEO_ID</code> diganti ID video:</p>
+<pre>&lt;iframe width="560" height="315"
+  src="https://www.youtube.com/embed/VIDEO_ID"
+  title="Judul video" allowfullscreen&gt;&lt;/iframe&gt;</pre>
+  <p class="todo"><b>Wajib:</b> tulis judul, kanal, dan link sumber video di bawahnya.</p>
+</section>
+
+<!-- DAFTAR PUSTAKA -->
+<section class="page" id="pustaka">
+  <h2>Daftar Pustaka</h2>
+  <h3>Buku (minimal 3)</h3>
+  <ol class="refs">
+    <li>Silberschatz, A., Galvin, P. B., &amp; Gagne, G. (2018). <i>Operating system concepts</i> (10th ed.). Wiley.</li>
+    <li>Stallings, W. (2018). <i>Operating systems: Internals and design principles</i> (9th ed.). Pearson.</li>
+    <li>Tanenbaum, A. S., &amp; Bos, H. (2015). <i>Modern operating systems</i> (4th ed.). Pearson.</li>
+  </ol>
+  <h3>Artikel jurnal (minimal 12)</h3>
+  <p class="todo"><b>Isi dengan artikel yang benar-benar Anda temukan.</b> Cari di Google Scholar, Garuda, atau SINTA dengan kata kunci "sistem operasi mobile", "perbandingan Android iOS", atau "mobile operating system". Salin penulis, tahun, judul, nama jurnal, volume, halaman, dan DOI apa adanya. Jangan mengarang.</p>
+  <ol class="refs" id="jurnal"></ol>
+</section>
+
+</main>
+
+<footer><div class="wrap">Contoh blog untuk tugas mata kuliah. Ganti semua bagian bertanda [isi] dengan tulisan Anda sendiri.</div></footer>
+
+<script>
+(function(){
+  // Data: [nama, pengembang, rilis, basis, status(1=aktif), mulai, akhir, ciri, catatan]
+  var OS=[
+    ["Android","Google (Open Handset Alliance)","2008","Kernel Linux",1,2008,2026,"Terbuka lewat AOSP, dipakai banyak vendor, toko aplikasi Google Play.","Sistem operasi mobile dengan pengguna terbanyak."],
+    ["iOS","Apple","2007","Darwin (XNU)",1,2007,2026,"Ekosistem tertutup dengan integrasi erat antara perangkat keras dan lunak.","Hanya berjalan di perangkat Apple."],
+    ["macOS","Apple","2001 (sebagai Mac OS X)","Darwin (XNU)",1,null,null,"Sistem operasi untuk komputer Mac, bukan ponsel.","Dibahas sebagai pembanding karena satu keluarga dengan iOS."],
+    ["HarmonyOS","Huawei","2019","Awalnya kompatibel Android; versi NEXT memakai basis sendiri",1,2019,2026,"Dirancang untuk banyak jenis perangkat yang saling terhubung.","Dikembangkan setelah pembatasan akses Huawei ke layanan Google."],
+    ["Magic OS","Honor","Mulai sebagai Magic UI, sekitar 2016","Android",1,2016,2026,"Lapisan antarmuka di atas Android, bukan sistem operasi dari nol.","Jelaskan konteks ini agar tidak dianggap sistem operasi mandiri."],
+    ["KaiOS","KaiOS Technologies","2017","Turunan Firefox OS (B2G)",1,2017,2026,"Untuk ponsel fitur dengan aplikasi web ringan dan harga murah.","Populer di pasar berkembang."],
+    ["Tizen","Samsung dan Linux Foundation","2012","Linux",1,2012,2026,"Kini banyak dipakai di jam tangan pintar dan TV Samsung.","Menyerap Bada."],
+    ["Fuchsia","Google","Terlihat publik 2016","Kernel Zircon",1,2016,2026,"Bukan berbasis Linux, dirancang modular.","Dipakai terbatas, misalnya pada perangkat rumah pintar."],
+    ["Windows Phone","Microsoft","2010","Windows CE lalu inti Windows NT",0,2010,2017,"Antarmuka ubin (Live Tiles), kemudian menjadi Windows 10 Mobile.","Dihentikan karena aplikasi sedikit dan pangsa pasar kecil."],
+    ["Symbian","Symbian Ltd, kemudian Nokia","Akhir 1990-an","Kernel milik sendiri",0,1998,2013,"Pernah menguasai pasar ponsel pintar dunia.","Nokia beralih ke Windows Phone."],
+    ["BlackBerry OS","Research In Motion (RIM)","1999","Sistem milik sendiri",0,1999,2013,"Terkenal dengan papan ketik fisik dan layanan pesan aman.","Digantikan BlackBerry 10, kemudian perusahaan beralih ke Android."],
+    ["Bada","Samsung","2010","Platform milik Samsung",0,2010,2013,"Dipakai pada seri Samsung Wave.","Dilebur ke Tizen."],
+    ["Maemo","Nokia","2005","Linux (Debian)",0,2005,2010,"Dipakai pada tablet internet Nokia 770, N800, dan N900.","Digabung dengan Moblin menjadi MeeGo."],
+    ["MeeGo","Nokia dan Intel (Linux Foundation)","2010","Linux",0,2010,2012,"Gabungan Maemo dan Moblin.","Dibatalkan; diteruskan komunitas sebagai Sailfish OS."],
+    ["Palm OS","Palm Inc.","1996","Sistem milik sendiri",0,1996,2009,"Populer di PDA dan ponsel pintar awal.","Digantikan webOS."],
+    ["Open webOS","HP, kemudian LG","2012 (versi terbuka)","Linux",0,2009,2013,"Turunan webOS milik Palm yang dibuka sumbernya.","Teknologinya diteruskan LG untuk TV pintar."]
+  ];
+
+  // Timeline
+  var rows=OS.filter(function(o){return o[5]});
+  rows.sort(function(a,b){return a[5]-b[5]});
+  var x0=1994,x1=2028,W=900,L=120,R=20,rh=20,T=22,H=T+rows.length*rh+8;
+  function X(y){return L+(y-x0)/(x1-x0)*(W-L-R)}
+  var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Garis waktu sistem operasi mobile">';
+  for(var y=2000;y<=2025;y+=5){
+    s+='<line x1="'+X(y)+'" x2="'+X(y)+'" y1="'+(T-6)+'" y2="'+(H-4)+'" stroke="var(--line)"/>';
+    s+='<text class="axis" x="'+X(y)+'" y="12" text-anchor="middle">'+y+'</text>';
+  }
+  rows.forEach(function(o,i){
+    var y=T+i*rh;
+    s+='<text x="'+(L-8)+'" y="'+(y+12)+'" text-anchor="end">'+o[0]+'</text>';
+    s+='<rect x="'+X(o[5])+'" y="'+(y+3)+'" width="'+Math.max(4,X(o[6])-X(o[5]))+'" height="12" rx="3" fill="'+(o[4]?'var(--active-bar)':'var(--ended-bar)')+'"><title>'+o[0]+': '+o[5]+' – '+(o[4]?'sekarang':o[6])+' (perkiraan)</title></rect>';
+  });
+  s+='</svg>';
+  document.getElementById('tl').innerHTML=s;
+
+  // Accordion
+  var list=document.getElementById('oslist'),h='';
+  function grp(t){h+='<div class="group-title">'+t+'</div>'}
+  function item(o){
+    h+='<details><summary>'+o[0]+' <span class="pill'+(o[4]?'':' end')+'">'+(o[4]?'Aktif':'Dihentikan')+'</span></summary><div class="body"><dl class="facts">'+
+    '<dt>Pengembang</dt><dd>'+o[1]+'</dd><dt>Rilis</dt><dd>'+o[2]+'</dd><dt>Basis</dt><dd>'+o[3]+'</dd><dt>Ciri khas</dt><dd>'+o[7]+'</dd><dt>Catatan</dt><dd>'+o[8]+'</dd></dl></div></details>';
+  }
+  grp('Masih aktif');OS.filter(function(o){return o[4]}).forEach(item);
+  grp('Sudah dihentikan');OS.filter(function(o){return !o[4]}).forEach(item);
+  list.innerHTML=h;
+
+  // Comparison table
+  var tb=document.querySelector('#cmp tbody'),t='';
+  OS.forEach(function(o){t+='<tr><td>'+o[0]+'</td><td>'+o[1]+'</td><td>'+o[2]+'</td><td>'+o[3]+'</td><td>'+(o[4]?'Aktif':'Dihentikan')+'</td></tr>'});
+  tb.innerHTML=t;
+
+  // Journal slots
+  var j='';for(var i=1;i<=12;i++){j+='<li class="blank">[Artikel jurnal '+i+': Penulis. (Tahun). Judul artikel. <i>Nama Jurnal</i>, volume(nomor), halaman. DOI]</li>'}
+  document.getElementById('jurnal').innerHTML=j;
+
+  // Tabs
+  var tabs=[].slice.call(document.querySelectorAll('nav button'));
+  function show(id){
+    tabs.forEach(function(b){b.setAttribute('aria-selected',b.dataset.p===id)});
+    [].forEach.call(document.querySelectorAll('section.page'),function(p){p.classList.toggle('on',p.id===id)});
+    window.scrollTo(0,0);
+  }
+  tabs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.p)})});
+})();
+</script>
+</body>
+</html>
