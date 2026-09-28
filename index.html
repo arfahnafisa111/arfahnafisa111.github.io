@@ -154,8 +154,40 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:15px;color
   <h2>Sistem Operasi</h2>
   <p>Setiap sistem operasi memakai format yang sama supaya mudah dibandingkan. Klik untuk membuka.</p>
   <div id="oslist"></div>
-  <p class="todo"><b>Open webOS adalah versi sumber terbuka dari webOS,</b> sistem operasi yang awalnya dikembangkan oleh Palm untuk smartphone Palm Pre pada 2009. Setelah Palm diakuisisi oleh HP, sistem operasi ini sempat dijual kembali dan akhirnya dijadikan proyek sumber terbuka pada 2012 dengan nama Open webOS. OS ini menggunakan antarmuka berbasis kartu (card-based interface) yang memungkinkan pengguna berpindah antar aplikasi dengan cara menggeser layar (Tanenbaum &amp; Bos, 2015).</p>
-  <p>Meskipun memiliki desain antarmuka yang inovatif untuk masanya, Open webOS tidak berhasil bersaing dengan Android dan iOS karena minimnya dukungan pengembang aplikasi pihak ketiga. Teknologinya kemudian diteruskan oleh LG untuk digunakan pada sistem operasi Smart TV mereka, bukan lagi pada perangkat smartphone.</p>
+  <div id="penjelasan">
+    <h3>Android</h3>
+    <p>Android adalah sistem operasi berbasis kernel Linux yang dikembangkan Google bersama Open Handset Alliance dan dirilis komersial pada 2008. Karena sifatnya terbuka, banyak produsen membuat antarmuka sendiri di atas sistem dasar yang sama, sehingga pilihan perangkatnya sangat beragam (Sudirman, 2022).</p>
+    <h3>iOS</h3>
+<p>iOS adalah sistem operasi milik Apple yang dirilis pada 2007 dan hanya dipasang pada perangkat Apple. Sifatnya tertutup: Apple tidak melisensikannya ke perangkat keras lain, sehingga kontrol atas sistem dan aplikasinya lebih ketat (Arnomo, 2019).</p>
+<h3>macOS</h3>
+<p>macOS adalah sistem operasi Apple untuk komputer Mac, bukan untuk ponsel. Ia berasal dari Mac OS X (2001) yang berbasis Unix dan satu keluarga teknologi dengan iOS, sehingga dibahas di sini sebagai pembanding.</p>
+<h3>HarmonyOS</h3>
+<p>HarmonyOS dikembangkan Huawei dan diperkenalkan pada 2019, didorong oleh terbatasnya akses Huawei ke layanan Google. Sistem ini dirancang untuk banyak jenis perangkat yang saling terhubung, dari ponsel sampai perangkat IoT.</p>
+<h3>Magic OS</h3>
+<p>Magic OS adalah antarmuka buatan Honor (sebelumnya Magic UI) yang berjalan di atas Android. Jadi ia bukan sistem operasi mandiri, melainkan lapisan kustomisasi dengan fitur tambahan khas Honor.</p>
+<h3>KaiOS</h3>
+<p>KaiOS dirilis pada 2017 dan diturunkan dari Firefox OS. Sistem ringan ini dibuat untuk ponsel fitur berharga murah yang tetap bisa menjalankan aplikasi dasar seperti peta dan pesan instan.</p>
+<h3>Tizen</h3>
+<p>Tizen berbasis Linux dan dikembangkan Samsung bersama Linux Foundation sejak 2012. Setelah kurang berhasil di ponsel, Tizen lebih banyak dipakai pada TV pintar dan perangkat wearable Samsung.</p>
+<h3>Fuchsia</h3>
+<p>Fuchsia adalah sistem operasi buatan Google yang mulai terlihat publik pada 2016. Ia tidak memakai kernel Linux, melainkan kernel baru bernama Zircon, dan hingga kini pemakaiannya masih terbatas pada beberapa perangkat pintar.</p>
+<h3>Windows Phone</h3>
+<p>Windows Phone dirilis Microsoft pada 2010 dengan tampilan Live Tiles. Jumlah aplikasinya sedikit dibanding Android dan iOS, dan pengembangannya dihentikan pada 2017.</p>
+<h3>Symbian</h3>
+<p>Symbian berasal dari EPOC buatan Psion dan dikembangkan bersama Nokia serta beberapa vendor lain. Ia sempat menguasai pasar ponsel pintar dunia, lalu tergeser oleh iPhone dan Android, dan Nokia beralih ke Windows Phone pada 2011.</p>
+<h3>BlackBerry OS</h3>
+<p>BlackBerry OS dikembangkan Research In Motion sejak 1999. Kelebihannya antara lain layanan email push, keyboard QWERTY fisik, dan sistem keamanan berlapis (Sudirman, 2022). Pada 2013 perusahaan mengumumkan peralihan ke Android.</p>
+<h3>Bada</h3>
+<p>Bada adalah sistem operasi Samsung yang dirilis pada 2010 dan dipakai pada seri Samsung Wave. Karena dukungan pengembang minim, Samsung menghentikannya dan mengalihkan pengembangan ke Tizen.</p>
+<h3>Maemo</h3>
+<p>Maemo adalah sistem operasi Nokia berbasis Linux (turunan Debian) yang dirilis pada 2005. Ia dipakai pada Nokia 770, N800, dan N900, lalu digabung dengan Moblin milik Intel menjadi MeeGo pada 2010.</p>
+<h3>MeeGo</h3>
+<p>MeeGo adalah gabungan Maemo dan Moblin di bawah Linux Foundation. Setelah Nokia beralih ke Windows Phone, proyek ini dihentikan, tetapi komunitas melanjutkannya sebagai Sailfish OS.</p>
+<h3>Palm OS</h3>
+<p>Palm OS dikembangkan Palm Inc. sejak 1996 dan dipakai luas pada PDA serta ponsel pintar awal. Seiring munculnya layar sentuh modern, ia digantikan webOS pada 2009.</p>
+<h3>Open webOS</h3>
+<p>Open webOS adalah versi terbuka dari webOS, sistem operasi Palm yang muncul bersama Palm Pre pada 2009. Setelah Palm diakuisisi HP, kodenya dibuka pada 2012 dan teknologinya kemudian diteruskan LG untuk TV pintar.</p>
+</div>
 </section>
 
 <!-- TABEL -->
@@ -308,6 +340,23 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:15px;color
     window.scrollTo(0,0);
   }
   tabs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.p)})});
+})();
+</script>
+<script>
+  (function(){
+  var box=document.getElementById('penjelasan');
+  if(!box)return;
+  var cards=document.querySelectorAll('#oslist details');
+  [].forEach.call(cards,function(d){
+    var name=d.querySelector('summary').firstChild.textContent.trim();
+    var h=[].filter.call(box.querySelectorAll('h3'),function(x){
+      return x.textContent.trim()===name;
+    })[0];
+    if(h&&h.nextElementSibling){
+      d.querySelector('.body').appendChild(h.nextElementSibling);
+    }
+  });
+  box.remove();
 })();
 </script>
 </body>
