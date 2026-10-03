@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sistem Operasi Mobile</title>
+<title>Ragam Sistem Operasi Mobile – Arfah Nafisa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -59,8 +59,6 @@ section.page.on{display:block}
 section.page h2{font-size:clamp(26px,4vw,38px);margin:0 0 6px;letter-spacing:-.01em}
 section.page h3{font-size:22px;margin:32px 0 8px}
 p{max-width:68ch}
-.todo{background:var(--soft);border-left:4px solid var(--ended-bar);padding:10px 14px;border-radius:4px;font-size:16px;max-width:68ch}
-.todo b{font-family:"Bricolage Grotesque",sans-serif}
 
 details{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:10px 0}
 summary{cursor:pointer;padding:14px 16px;font-weight:700;font-size:18px;display:flex;align-items:center;gap:12px;list-style:none}
@@ -70,7 +68,8 @@ details[open] summary::after{content:"–"}
 .pill{font-size:12px;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--accent);color:var(--accent-ink)}
 .pill.end{background:var(--ended-bar);color:#1b1300}
 .body{padding:0 16px 16px}
-dl.facts{display:grid;grid-template-columns:max-content 1fr;gap:4px 18px;margin:0 0 10px;font-size:16px}
+.body p{margin-top:0}
+dl.facts{display:grid;grid-template-columns:max-content 1fr;gap:4px 18px;margin:0 0 14px;font-size:16px}
 dl.facts dt{font-family:"Bricolage Grotesque",sans-serif;color:var(--muted);font-weight:500}
 dl.facts dd{margin:0}
 .group-title{font-size:15px;color:var(--muted);margin:28px 0 6px;font-family:"Bricolage Grotesque",sans-serif;font-weight:700}
@@ -81,17 +80,17 @@ th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vert
 th{background:var(--soft);font-size:14px}
 tr:last-child td{border-bottom:0}
 caption{caption-side:top;text-align:left;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;padding:12px 14px 0;font-size:16px}
+small{color:var(--muted)}
 
 .video{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;max-width:720px}
-.video .screen{aspect-ratio:16/9;background:#0f1826;color:#e8eef6;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:20px;text-align:center;font-family:"Bricolage Grotesque",sans-serif}
-.video .play{width:64px;height:64px;border-radius:50%;background:#4fd1c5;display:grid;place-items:center}
-.video .play::after{content:"";border-left:20px solid #0f1826;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
+.video iframe{width:100%;display:block}
 .video .meta{padding:14px 16px;font-size:16px}
 pre{background:var(--soft);padding:12px 14px;border-radius:6px;overflow-x:auto;font-size:14px;max-width:720px}
 
 ol.refs{padding-left:0;list-style:none;max-width:72ch}
-ol.refs li{padding:0 0 12px 2em;text-indent:-2em;font-size:17px;line-height:1.55}
-ol.refs li.blank{color:var(--muted);font-style:italic}
+ol.refs{counter-reset:refs}
+ol.refs li{counter-increment:refs;padding:0 0 12px 2em;text-indent:-2em;font-size:17px;line-height:1.55}
+ol.refs li::before{content:counter(refs) ". "}
 
 footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:15px;color:var(--muted)}
 @media (prefers-reduced-motion:no-preference){ section.page.on{animation:in .25s ease-out} @keyframes in{from{opacity:0}to{opacity:1}} }
@@ -131,17 +130,22 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:15px;color
   </div>
 
   <p>Perkembangan telepon pintar tidak lepas dari peran sistem operasi yang menjalankannya. Sistem operasi adalah perangkat lunak yang mengelola perangkat keras dan menyediakan layanan bagi aplikasi (Silberschatz et al., 2018). Pada ponsel, sistem operasi juga menentukan tampilan antarmuka, keamanan data pengguna, serta jenis aplikasi yang dapat dipasang.</p>
-  <p>Dalam dua dekade terakhir, banyak sistem operasi mobile bermunculan, namun tidak semuanya mampu bertahan. Beberapa seperti Symbian, Windows Phone, dan Bada pernah populer, tetapi akhirnya dihentikan karena kalah bersaing dalam hal ekosistem aplikasi dan dukungan pengembang (Stallings, 2018). Sebaliknya, Android dan iOS justru semakin berkembang hingga saat ini.</p>
-  <p>Blog ini dibuat sebagai tugas mata kuliah Pengantar Teknologi Informasi.</b> untuk mempelajari dan membandingkan 16 sistem operasi mobile, baik yang masih aktif maupun yang sudah tidak digunakan lagi. Pembahasan disusun dengan format yang seragam agar mudah dibandingkan, dilengkapi tabel, video pendukung, dan daftar pustaka dari buku serta jurnal.</p>
+
+  <p>Dalam dua dekade terakhir, banyak sistem operasi mobile bermunculan, namun tidak semuanya mampu bertahan. Symbian, misalnya, pernah menguasai pasar, tetapi terlambat menghadirkan toko aplikasi dan memberi insentif yang kecil bagi pengembang dibanding Google dan Apple (TPlus Magazine, 2018). Windows Phone pun dihentikan pada 2017 karena tidak mampu mengimbangi Android dan iOS dalam hal ekosistem aplikasi (Digital Solusi Grup, 2025). Sebaliknya, Android dan iOS terus berkembang hingga saat ini.</p>
+
+  <p>Blog ini dibuat sebagai tugas mata kuliah Pengantar Teknologi Informasi, untuk mempelajari dan membandingkan 16 sistem operasi mobile, baik yang masih aktif maupun yang sudah tidak digunakan lagi. Pembahasan disusun dengan format yang seragam agar mudah dibandingkan, dilengkapi tabel, video pendukung, dan daftar pustaka dari buku serta jurnal.</p>
 </section>
 
 <!-- TEORI -->
 <section class="page" id="teori">
   <h2>Landasan Teori</h2>
+
   <h3>Pengertian sistem operasi</h3>
   <p>Sistem operasi berperan sebagai perantara antara pengguna, aplikasi, dan perangkat keras (Tanenbaum &amp; Bos, 2015). Tanpa sistem operasi, setiap aplikasi harus mengatur sendiri layar, memori, dan jaringan.</p>
+
   <h3>Fungsi utama</h3>
   <p>Manajemen proses, manajemen memori, manajemen berkas, manajemen perangkat masukan/keluaran, dan antarmuka pengguna (Stallings, 2018).</p>
+
   <h3>OS desktop dan OS mobile</h3>
   <p>Meskipun sama-sama menjalankan aplikasi, sistem operasi desktop dan sistem operasi mobile dirancang dengan pendekatan yang berbeda. OS desktop dioptimalkan untuk perangkat dengan sumber daya besar, mouse dan papan ketik sebagai alat masukan utama, serta daya listrik yang umumnya tidak terbatas. Sebaliknya, OS mobile dirancang untuk perangkat dengan baterai terbatas, sehingga manajemen daya menjadi salah satu fungsi penting agar perangkat tetap dapat digunakan seharian (Tanenbaum &amp; Bos, 2015).</p>
   <p>Perbedaan lain terletak pada cara pengguna berinteraksi dengan perangkat. OS mobile mengandalkan layar sentuh sebagai alat masukan utama, didukung sensor seperti GPS dan accelerometer yang jarang ditemukan pada komputer desktop. Perbandingan berbagai platform mobile seperti Android, iOS, dan BlackBerry menunjukkan bahwa masing-masing menekankan pengalaman pengguna yang berbeda meski tujuan dasarnya sama, yaitu memudahkan interaksi manusia dengan perangkat (Sudirman, 2022).</p>
@@ -153,40 +157,41 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:15px;color
   <h2>Sistem Operasi</h2>
   <p>Setiap sistem operasi memakai format yang sama supaya mudah dibandingkan. Klik untuk membuka.</p>
   <div id="oslist"></div>
-  <div id="penjelasan">
+
+  <div id="penjelasan" style="display:none">
     <h3>Android</h3>
     <p>Android adalah sistem operasi berbasis kernel Linux yang dikembangkan Google bersama Open Handset Alliance dan dirilis komersial pada 2008. Karena sifatnya terbuka, banyak produsen membuat antarmuka sendiri di atas sistem dasar yang sama, sehingga pilihan perangkatnya sangat beragam (Sudirman, 2022).</p>
     <h3>iOS</h3>
-<p>iOS adalah sistem operasi milik Apple yang dirilis pada 2007 dan hanya dipasang pada perangkat Apple. Sifatnya tertutup: Apple tidak melisensikannya ke perangkat keras lain, sehingga kontrol atas sistem dan aplikasinya lebih ketat (Arnomo, 2019).</p>
-<h3>macOS</h3>
-<p>macOS adalah sistem operasi Apple untuk komputer Mac, bukan untuk ponsel. Ia berasal dari Mac OS X (2001) yang berbasis Unix dan satu keluarga teknologi dengan iOS, sehingga dibahas di sini sebagai pembanding.</p>
-<h3>HarmonyOS</h3>
-<p>HarmonyOS dikembangkan Huawei dan diperkenalkan pada 2019, didorong oleh terbatasnya akses Huawei ke layanan Google. Sistem ini dirancang untuk banyak jenis perangkat yang saling terhubung, dari ponsel sampai perangkat IoT.</p>
-<h3>Magic OS</h3>
-<p>Magic OS adalah antarmuka buatan Honor (sebelumnya Magic UI) yang berjalan di atas Android. Jadi ia bukan sistem operasi mandiri, melainkan lapisan kustomisasi dengan fitur tambahan khas Honor.</p>
-<h3>KaiOS</h3>
-<p>KaiOS dirilis pada 2017 dan diturunkan dari Firefox OS. Sistem ringan ini dibuat untuk ponsel fitur berharga murah yang tetap bisa menjalankan aplikasi dasar seperti peta dan pesan instan.</p>
-<h3>Tizen</h3>
-<p>Tizen berbasis Linux dan dikembangkan Samsung bersama Linux Foundation sejak 2012. Setelah kurang berhasil di ponsel, Tizen lebih banyak dipakai pada TV pintar dan perangkat wearable Samsung.</p>
-<h3>Fuchsia</h3>
-<p>Fuchsia adalah sistem operasi buatan Google yang mulai terlihat publik pada 2016. Ia tidak memakai kernel Linux, melainkan kernel baru bernama Zircon, dan hingga kini pemakaiannya masih terbatas pada beberapa perangkat pintar.</p>
-<h3>Windows Phone</h3>
-<p>Windows Phone dirilis Microsoft pada 2010 dengan tampilan Live Tiles. Jumlah aplikasinya sedikit dibanding Android dan iOS, dan pengembangannya dihentikan pada 2017.</p>
-<h3>Symbian</h3>
-<p>Symbian berasal dari EPOC buatan Psion dan dikembangkan bersama Nokia serta beberapa vendor lain. Ia sempat menguasai pasar ponsel pintar dunia, lalu tergeser oleh iPhone dan Android, dan Nokia beralih ke Windows Phone pada 2011.</p>
-<h3>BlackBerry OS</h3>
-<p>BlackBerry OS dikembangkan Research In Motion sejak 1999. Kelebihannya antara lain layanan email push, keyboard QWERTY fisik, dan sistem keamanan berlapis (Sudirman, 2022). Pada 2013 perusahaan mengumumkan peralihan ke Android.</p>
-<h3>Bada</h3>
-<p>Bada adalah sistem operasi Samsung yang dirilis pada 2010 dan dipakai pada seri Samsung Wave. Karena dukungan pengembang minim, Samsung menghentikannya dan mengalihkan pengembangan ke Tizen.</p>
-<h3>Maemo</h3>
-<p>Maemo adalah sistem operasi Nokia berbasis Linux (turunan Debian) yang dirilis pada 2005. Ia dipakai pada Nokia 770, N800, dan N900, lalu digabung dengan Moblin milik Intel menjadi MeeGo pada 2010.</p>
-<h3>MeeGo</h3>
-<p>MeeGo adalah gabungan Maemo dan Moblin di bawah Linux Foundation. Setelah Nokia beralih ke Windows Phone, proyek ini dihentikan, tetapi komunitas melanjutkannya sebagai Sailfish OS.</p>
-<h3>Palm OS</h3>
-<p>Palm OS dikembangkan Palm Inc. sejak 1996 dan dipakai luas pada PDA serta ponsel pintar awal. Seiring munculnya layar sentuh modern, ia digantikan webOS pada 2009.</p>
-<h3>Open webOS</h3>
-<p>Open webOS adalah versi terbuka dari webOS, sistem operasi Palm yang muncul bersama Palm Pre pada 2009. Setelah Palm diakuisisi HP, kodenya dibuka pada 2012 dan teknologinya kemudian diteruskan LG untuk TV pintar.</p>
-</div>
+    <p>iOS adalah sistem operasi milik Apple yang dirilis pada 2007 dan hanya dipasang pada perangkat Apple. Sifatnya tertutup: Apple tidak melisensikannya ke perangkat keras lain, sehingga kontrol atas sistem dan aplikasinya lebih ketat (Arnomo, 2019).</p>
+    <h3>macOS</h3>
+    <p>macOS adalah sistem operasi Apple untuk komputer Mac, bukan untuk ponsel. Ia berasal dari Mac OS X (2001) yang berbasis Unix dan satu keluarga teknologi dengan iOS, sehingga dibahas di sini sebagai pembanding.</p>
+    <h3>HarmonyOS</h3>
+    <p>HarmonyOS dikembangkan Huawei dan diperkenalkan pada 2019, didorong oleh terbatasnya akses Huawei ke layanan Google. Sistem ini dirancang untuk banyak jenis perangkat yang saling terhubung, dari ponsel sampai perangkat IoT.</p>
+    <h3>Magic OS</h3>
+    <p>Magic OS adalah antarmuka buatan Honor (sebelumnya Magic UI) yang berjalan di atas Android. Jadi ia bukan sistem operasi mandiri, melainkan lapisan kustomisasi dengan fitur tambahan khas Honor.</p>
+    <h3>KaiOS</h3>
+    <p>KaiOS dirilis pada 2017 dan diturunkan dari Firefox OS. Sistem ringan ini dibuat untuk ponsel fitur berharga murah yang tetap bisa menjalankan aplikasi dasar seperti peta dan pesan instan.</p>
+    <h3>Tizen</h3>
+    <p>Tizen berbasis Linux dan dikembangkan Samsung bersama Linux Foundation sejak 2012. Setelah kurang berhasil di ponsel, Tizen lebih banyak dipakai pada TV pintar dan perangkat wearable Samsung.</p>
+    <h3>Fuchsia</h3>
+    <p>Fuchsia adalah sistem operasi buatan Google yang mulai terlihat publik pada 2016 dan dibangun di atas kernel Zircon, bukan kernel Linux. Fuchsia resmi dipakai di produk konsumen sejak 2021 lewat Google Nest Hub generasi pertama (Fuchsia Project, n.d.).</p>
+    <h3>Windows Phone</h3>
+    <p>Windows Phone dirilis Microsoft pada 2010 dengan tampilan Live Tiles. Jumlah aplikasinya sedikit dibanding Android dan iOS, dan pengembangannya dihentikan pada 2017.</p>
+    <h3>Symbian</h3>
+    <p>Symbian berasal dari EPOC buatan Psion dan dikembangkan bersama Nokia serta beberapa vendor lain. Ia sempat menguasai pasar ponsel pintar dunia, lalu tergeser oleh iPhone dan Android, dan Nokia beralih ke Windows Phone pada 2011 (TPlus Magazine, 2018).</p>
+    <h3>BlackBerry OS</h3>
+    <p>BlackBerry OS dikembangkan Research In Motion sejak 1999. Kelebihannya antara lain layanan email push, keyboard QWERTY fisik, dan sistem keamanan berlapis (Sudirman, 2022). Pada 2013 perusahaan mengumumkan peralihan ke Android.</p>
+    <h3>Bada</h3>
+    <p>Bada adalah sistem operasi Samsung yang dirilis pada 2010 dan dipakai pada seri Samsung Wave. Karena dukungan pengembang minim, Samsung mengumumkan penggabungan Bada ke Tizen pada 2012 (Aufranc, 2012).</p>
+    <h3>Maemo</h3>
+    <p>Maemo adalah sistem operasi Nokia berbasis Linux (turunan Debian) yang dirilis pada 2005. Ia dipakai pada Nokia 770, N800, dan N900, lalu digabung dengan Moblin milik Intel menjadi MeeGo pada 2010 (Wikipedia, 2026).</p>
+    <h3>MeeGo</h3>
+    <p>MeeGo adalah gabungan Maemo dan Moblin di bawah Linux Foundation. Setelah Nokia beralih ke Windows Phone, proyek ini dihentikan, tetapi komunitas melanjutkannya sebagai Sailfish OS.</p>
+    <h3>Palm OS</h3>
+    <p>Palm OS dikembangkan Palm Inc. sejak 1996 dan dipakai luas pada PDA serta ponsel pintar awal. Seiring munculnya layar sentuh modern, ia digantikan webOS pada 2009.</p>
+    <h3>Open webOS</h3>
+    <p>Open webOS adalah versi terbuka dari webOS, sistem operasi Palm yang muncul bersama Palm Pre pada 2009. Setelah Palm diakuisisi HP, kodenya dibuka pada 2012 dan teknologinya kemudian diteruskan LG untuk TV pintar.</p>
+  </div>
 </section>
 
 <!-- TABEL -->
@@ -209,9 +214,9 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:15px;color
   <div class="tablewrap"><table>
     <thead><tr><th>Kelebihan</th><th>Kekurangan</th></tr></thead>
     <tbody>
-      <tr><td>Kernel baru (Zircon) yang tidak berbasis Linux</td><td>Pemakaian komersial masih terbatas</td></tr>
-      <tr><td>Dirancang modular dan mudah diperbarui</td><td>Ekosistem aplikasi masih kecil</td></tr>
-      <tr><td>Bisa dipakai di berbagai jenis perangkat</td><td>Arah pengembangan jangka panjang belum jelas</td></tr>
+      <tr><td>Kernel baru (Zircon), bukan berbasis Linux</td><td>Pemakaian komersial masih terbatas</td></tr>
+      <tr><td>Dirancang modular dan lintas perangkat</td><td>Ekosistem aplikasi masih kecil</td></tr>
+      <tr><td>Sudah dipakai pada produk konsumen sejak 2021</td><td>Upaya membawa Chrome versi penuh ke Fuchsia dihentikan pada 2024</td></tr>
     </tbody>
   </table></div>
   <p><small>Sumber: Fuchsia Project (n.d.); Wikipedia (2026).</small></p>
@@ -222,9 +227,9 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:15px;color
     <tbody>
       <tr><td>Pengembang</td><td>Samsung</td><td>Nokia</td></tr>
       <tr><td>Rilis</td><td>2010</td><td>2005</td></tr>
-      <tr><td>Basis</td><td>Platform milik Samsung</td><td>Linux (berbasis Debian)</td></tr>
+      <tr><td>Basis</td><td>Platform Samsung (kernel RTOS milik Samsung atau Linux)</td><td>Linux (turunan Debian)</td></tr>
       <tr><td>Contoh perangkat</td><td>Samsung Wave</td><td>Nokia 770, N800, N900</td></tr>
-      <tr><td>Nasib akhir</td><td>Dihentikan, dilebur ke Tizen</td><td>Digabung ke MeeGo</td></tr>
+      <tr><td>Nasib akhir</td><td>Dilebur ke Tizen</td><td>Digabung ke MeeGo</td></tr>
     </tbody>
   </table></div>
   <p><small>Sumber: Aufranc (2012); Wikipedia (2026).</small></p>
@@ -234,33 +239,33 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:15px;color
     <thead><tr><th>Nama OS</th><th>Pengembang</th><th>Rilis</th><th>Basis</th><th>Status</th></tr></thead>
     <tbody></tbody>
   </table></div>
-  <p><small>Sumber: Sudirman (2022); Arnomo (2019); dan sumber pada Tabel 1-3.</small></p>
+  <p><small>Sumber: Sudirman (2022); Arnomo (2019); dan sumber pada Tabel 1–3.</small></p>
 </section>
 
 <!-- VIDEO -->
 <section class="page" id="video">
   <h2>Video Pendukung</h2>
   <div class="video">
-      <iframe width="100%" style="aspect-ratio:16/9;border:0" src="https://www.youtube.com/embed/P4_LbjQrM_E" title="Every Major Phone OS Explained" allowfullscreen></iframe>
-      <div class="meta">
-        <b>Judul video:</b> Every Major Phone OS Explained | Symbian OS, Windows Phone, iOS, Android, One UI<br>
-        <b>Kanal:</b> BLASTERTECHNOLOGY<br>
-        <b>Sumber:</b> <a href="https://www.youtube.com/watch?v=P4_LbjQrM_E" target="_blank">https://www.youtube.com/watch?v=P4_LbjQrM_E</a>
-      </div>
+    <iframe width="100%" style="aspect-ratio:16/9;border:0" src="https://www.youtube.com/embed/P4_LbjQrM_E" title="Every Major Phone OS Explained" allowfullscreen></iframe>
+    <div class="meta">
+      <b>Judul video:</b> Every Major Phone OS Explained | Symbian OS, Windows Phone, iOS, Android, One UI<br>
+      <b>Kanal:</b> BLASTERTECHNOLOGY<br>
+      <b>Sumber:</b> <a href="https://www.youtube.com/watch?v=P4_LbjQrM_E" target="_blank">https://www.youtube.com/watch?v=P4_LbjQrM_E</a>
     </div>
+  </div>
 </section>
 
 <!-- DAFTAR PUSTAKA -->
 <section class="page" id="pustaka">
   <h2>Daftar Pustaka</h2>
-  
+
   <h3>Buku</h3>
   <ol class="refs">
     <li>Silberschatz, A., Galvin, P. B., &amp; Gagne, G. (2018). <i>Operating system concepts</i> (10th ed.). Wiley.</li>
     <li>Stallings, W. (2018). <i>Operating systems: Internals and design principles</i> (9th ed.). Pearson.</li>
     <li>Tanenbaum, A. S., &amp; Bos, H. (2015). <i>Modern operating systems</i> (4th ed.). Pearson.</li>
   </ol>
-  
+
   <h3>Artikel jurnal</h3>
   <ol class="refs" id="jurnal">
     <li>Arnomo, S. A. (2019). Perbandingan Fitur Smartphone, Pemanfaatan dan Tingkat Usability pada Android dan iOS Platforms. <i>InfoTekJar: Jurnal Nasional Informatika dan Teknologi Jaringan</i>, 3(2). https://doi.org/10.30743/infotekjar.v3i2.1002</li>
@@ -303,11 +308,11 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:15px;color
     ["Magic OS","Honor","Mulai sebagai Magic UI, sekitar 2016","Android",1,2016,2026,"Lapisan antarmuka di atas Android, bukan sistem operasi dari nol.","Jelaskan konteks ini agar tidak dianggap sistem operasi mandiri."],
     ["KaiOS","KaiOS Technologies","2017","Turunan Firefox OS (B2G)",1,2017,2026,"Untuk ponsel fitur dengan aplikasi web ringan dan harga murah.","Populer di pasar berkembang."],
     ["Tizen","Samsung dan Linux Foundation","2012","Linux",1,2012,2026,"Kini banyak dipakai di jam tangan pintar dan TV Samsung.","Menyerap Bada."],
-    ["Fuchsia","Google","Terlihat publik 2016","Kernel Zircon",1,2016,2026,"Bukan berbasis Linux, dirancang modular.","Dipakai terbatas, misalnya pada perangkat rumah pintar."],
+    ["Fuchsia","Google","Terlihat publik 2016, produk konsumen 2021","Kernel Zircon",1,2016,2026,"Bukan berbasis Linux, dirancang modular.","Dipakai pada Google Nest Hub sejak 2021."],
     ["Windows Phone","Microsoft","2010","Windows CE lalu inti Windows NT",0,2010,2017,"Antarmuka ubin (Live Tiles), kemudian menjadi Windows 10 Mobile.","Dihentikan karena aplikasi sedikit dan pangsa pasar kecil."],
     ["Symbian","Symbian Ltd, kemudian Nokia","Akhir 1990-an","Kernel milik sendiri",0,1998,2013,"Pernah menguasai pasar ponsel pintar dunia.","Nokia beralih ke Windows Phone."],
     ["BlackBerry OS","Research In Motion (RIM)","1999","Sistem milik sendiri",0,1999,2013,"Terkenal dengan papan ketik fisik dan layanan pesan aman.","Digantikan BlackBerry 10, kemudian perusahaan beralih ke Android."],
-    ["Bada","Samsung","2010","Platform milik Samsung",0,2010,2013,"Dipakai pada seri Samsung Wave.","Dilebur ke Tizen."],
+    ["Bada","Samsung","2010","Platform milik Samsung",0,2010,2012,"Dipakai pada seri Samsung Wave.","Dilebur ke Tizen pada 2012."],
     ["Maemo","Nokia","2005","Linux (Debian)",0,2005,2010,"Dipakai pada tablet internet Nokia 770, N800, dan N900.","Digabung dengan Moblin menjadi MeeGo."],
     ["MeeGo","Nokia dan Intel (Linux Foundation)","2010","Linux",0,2010,2012,"Gabungan Maemo dan Moblin.","Dibatalkan; diteruskan komunitas sebagai Sailfish OS."],
     ["Palm OS","Palm Inc.","1996","Sistem milik sendiri",0,1996,2009,"Populer di PDA dan ponsel pintar awal.","Digantikan webOS."],
@@ -348,10 +353,6 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:15px;color
   OS.forEach(function(o){t+='<tr><td>'+o[0]+'</td><td>'+o[1]+'</td><td>'+o[2]+'</td><td>'+o[3]+'</td><td>'+(o[4]?'Aktif':'Dihentikan')+'</td></tr>'});
   tb.innerHTML=t;
 
-  // Journal slots
-  var j='';for(var i=1;i<=12;i++){j+='<li class="blank">[Artikel jurnal '+i+': Penulis. (Tahun). Judul artikel. <i>Nama Jurnal</i>, volume(nomor), halaman. DOI]</li>'}
-  document.getElementById('jurnal').innerHTML=j;
-
   // Tabs
   var tabs=[].slice.call(document.querySelectorAll('nav button'));
   function show(id){
@@ -363,7 +364,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:15px;color
 })();
 </script>
 <script>
-  (function(){
+(function(){
   var box=document.getElementById('penjelasan');
   if(!box)return;
   var cards=document.querySelectorAll('#oslist details');
